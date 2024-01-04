@@ -1,0 +1,35 @@
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+       vector<int> v;
+       ListNode* temp = head;
+       if(head == NULL){
+           return temp ;
+       }
+       while(temp){
+           v.push_back(temp->val);
+           temp=temp->next;
+       }
+
+       sort(v.begin(),v.end());
+    //    for(int i=0;i<v.size();i++){
+    //        cout<<v[i]<<" ";
+    //    }
+       ListNode* sorted=NULL;
+       ListNode* newhead=NULL;
+       for(int i=0;i<v.size();i++){
+           ListNode* lt = new ListNode();
+           if(newhead==NULL){
+               lt->val=v[i];
+               sorted= lt;
+               newhead=lt;
+           }
+           else{
+                lt->val=v[i];
+                sorted->next=lt;
+                sorted=sorted->next;
+           }
+       }
+       return newhead;
+    }
+};
